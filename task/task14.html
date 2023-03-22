@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 14</title>
+</head>
+<body>
+    Відсортувати кожен тиждень за зростанням
+    <br>
+    <script>
+           const K = parseInt(prompt('Кількість магазинів'))
+// Генеруємо випадкові прибутки
+    function generateRandomProfit(minValue, maxValue) {
+    return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+    }
+
+// Створюємо масив з магазинами та наповнюєм його випадковими прибутками
+    function generateShopProfit(K, minValue, maxValue){
+    let totalProfit = []
+        for(let row=0; row<K; row++){
+           let profitPerWeek = []
+           for(let column=0; column<7; column++){
+            let profitPerDay = generateRandomProfit(minValue, maxValue)
+            profitPerWeek.push(profitPerDay) 
+            }
+            totalProfit.push(profitPerWeek)
+            console.log(`Виручка ${row+1} магазина за тиждень: ${profitPerWeek}`)    
+        }
+        return totalProfit
+           }
+        //Сортуємо кожен тиждень за зростанням
+        const totalProfit = generateShopProfit(K, 100, 250)
+        const sortedTotalProfit = []
+
+        for(let row=0; row<K; row++){
+    sortedTotalProfit[row] = totalProfit[row].sort((el1,el2) => 
+    el1-el2)
+    console.log(`Магазин ${row+1}: ${sortedTotalProfit[row]}`)
+}
+     
+
+    </script>
+</body>
+</html>

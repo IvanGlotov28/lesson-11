@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 17</title>
+</head>
+<body>
+    Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів. Користувач стріляє вказуючи координати. Гра продовжується поки не потоплено усі кораблі або у користувача не закінчаться снаряди.
+    <script>
+        const width = 6 
+        const height = 6
+        let shipNum = 5
+
+        let bombNum = parseInt(prompt('Кількість снарядів'))
+
+// Генеруємо розташування кораблів
+    function getRandomRow(minValue, maxValue) {
+    return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+    }
+    function getRandomColumn(minValue, maxValue) {
+    return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+    }
+
+// Створюємо ігрове поле
+    function getBattleField(width, height) {
+            const battleField = []
+        for (let row=0; row<height; row++) {
+            const rowCoordinate = []
+        for (let column=0; column<width; column++){
+            rowCoordinate[column] =0
+        }  battleField.push(rowCoordinate)
+            }return battleField}
+    
+
+            
+// Розташовуємо кораблі на полі
+    const battleField = getBattleField(width, height) 
+    let shipCounter = 0       
+
+    while(shipCounter<shipNum){
+        if(battleField[getRandomRow(0,5)][getRandomColumn(0,5)]===0){
+         battleField[getRandomRow(0,5)][getRandomColumn(0,5)] =1
+         shipCounter++
+        }
+    }
+     
+    console.log(battleField)
+  
+    //Гра
+
+   
+        while(shipNum>0)
+        {  const userRow = parseInt(prompt('Куди стріляти по горизонталі?')-1)
+        const userСolumn = parseInt(prompt('Куди стріляти по вертикалі?')-1)
+        bombNum--
+        if(battleField[userRow][userСolumn]===1){
+        battleField[userRow][userСolumn] =0
+        shipNum--
+        alert(`Ви попали, у вас залишилось ${bombNum} пострілів та ${shipNum} кораблів`)
+        }
+        else{ alert(`Ви не попали, у вас залишилось ${bombNum} пострілів та ${shipNum} кораблів`)}
+    if(bombNum===0)break
+    }
+
+
+    if(shipNum===0)
+        alert('Ви перемогли')
+    else alert('Ви програли')
+
+    </script>
+</body>
+</html>
+

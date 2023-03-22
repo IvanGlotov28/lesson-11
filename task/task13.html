@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 13</title>
+</head>
+<body>
+    Сформувати загальний список (одновимірний масив) зі значеннями,  що більші за 200
+    <br>
+    <script>
+           const K =  parseInt(prompt('Кількість магазинів'))
+// Генеруємо випадкові прибутки
+    function generateRandomProfit(minValue, maxValue) {
+    return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+    }
+
+// Створюємо масив з магазинами та наповнюєм його випадковими прибутками
+    function generateShopProfit(K, minValue, maxValue){
+    let totalProfit = []
+        for(let row=0; row<K; row++){
+           let profitPerWeek = []
+           for(let column=0; column<7; column++){
+            let profitPerDay = generateRandomProfit(minValue, maxValue)
+            profitPerWeek.push(profitPerDay) 
+            }
+            totalProfit.push(profitPerWeek)
+            console.log(`Виручка ${row+1} магазина за тиждень: ${profitPerWeek}`)    
+        }
+        return totalProfit
+           }
+   
+// Формуємо загальний список зі значеннями,  що більші за 200
+        const totalProfit = generateShopProfit(K, 100, 250)
+        let  profitGreaterThan200 = []
+        for(let row=0; row<K; row++){
+            for(let column=0; column<7; column++){
+                if(totalProfit[row][column]>200) 
+                profitGreaterThan200.push(totalProfit[row][column])
+            }
+        }
+        console.log(`Загальний список зі значеннями,  що більші за 200: ${profitGreaterThan200}`)
+        
+
+    </script>
+</body>
+</html>
